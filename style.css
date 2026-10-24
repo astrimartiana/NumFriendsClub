@@ -1,0 +1,409 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #26324b;
+  --orange: #ff855e;
+  --yellow: #ffd85e;
+  --pink: #ffe1ec;
+  --blue: #dff5ff;
+  --green: #e0f8df;
+  --purple: #cbb8ff;
+  --cream: #fffaf0;
+  --white: #ffffff;
+  --muted: #667085;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* NAVBAR */
+header {
+  background: var(--white);
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+nav a {
+  color: var(--ink);
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--orange);
+}
+
+/* TOMBOL */
+.btn {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 13px 23px;
+  border: 3px solid var(--ink);
+  border-radius: 15px;
+  box-shadow: 0 4px 0 var(--ink);
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+/* HERO */
+.hero {
+  padding: 75px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero-text h1 {
+  font-size: clamp(38px, 6vw, 65px);
+  line-height: 1.15;
+  margin: 20px 0;
+  font-weight: 900;
+}
+
+.hero-text h1 span {
+  color: var(--orange);
+}
+
+.hero-text p {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.badge {
+  display: inline-block;
+  background: #b8edc7;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 260px;
+  min-height: 300px;
+  background: var(--purple);
+  border: 3px solid var(--ink);
+  border-radius: 40px;
+  box-shadow: 7px 7px 0 var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+}
+
+.hero-image .numbers {
+  font-size: clamp(55px, 8vw, 85px);
+  font-weight: bold;
+  color: var(--white);
+  text-shadow: 4px 4px var(--ink);
+}
+
+.hero-image p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* SECTION UMUM */
+section {
+  padding: 65px 7%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h2 {
+  font-size: clamp(28px, 4vw, 36px);
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: var(--muted);
+}
+
+/* PILIH LEVEL */
+.levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.level-card {
+  padding: 28px;
+  border: 3px solid var(--ink);
+  border-radius: 25px;
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 0.2s;
+}
+
+.level-card:hover {
+  transform: translateY(-5px);
+}
+
+.level-card:nth-child(1) {
+  background: var(--pink);
+}
+
+.level-card:nth-child(2) {
+  background: var(--blue);
+}
+
+.level-card:nth-child(3) {
+  background: var(--green);
+}
+
+.level-card .emoji {
+  font-size: 45px;
+}
+
+.level-card h3 {
+  font-size: 23px;
+  margin: 10px 0;
+}
+
+.level-card p {
+  margin-bottom: 20px;
+}
+
+.level-card .btn {
+  margin-top: 5px;
+}
+
+/* KUIS BERHITUNG */
+.practice {
+  background: #fff0c6;
+}
+
+.quiz-box {
+  max-width: 650px;
+  margin: auto;
+  background: var(--white);
+  padding: 35px 25px;
+  border: 3px solid var(--ink);
+  border-radius: 28px;
+  box-shadow: 7px 7px 0 var(--ink);
+  text-align: center;
+}
+
+.question {
+  font-size: clamp(42px, 8vw, 55px);
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.answer {
+  padding: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  background: #8bd7f2;
+  border: 3px solid var(--ink);
+  border-radius: 15px;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: 0.2s;
+}
+
+.answer:nth-child(2) {
+  background: #ffb5cd;
+}
+
+.answer:nth-child(3) {
+  background: #a9e8bd;
+}
+
+.answer:hover:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.answer:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+#feedback {
+  margin: 20px 0;
+  font-weight: bold;
+  min-height: 28px;
+}
+
+.score {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* TIPS BELAJAR */
+.tips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tip-card {
+  background: var(--white);
+  padding: 25px;
+  text-align: center;
+  border-radius: 22px;
+  border: 2px solid #f1e8d8;
+  transition: transform 0.2s;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+}
+
+.tip-card .emoji {
+  font-size: 40px;
+}
+
+.tip-card h3 {
+  margin: 10px 0;
+}
+
+.tip-card p {
+  color: var(--muted);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 28px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* RESPONSIVE HP DAN TABLET */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px 4%;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 45px 5%;
+  }
+
+  .hero-text,
+  .hero-image {
+    width: 100%;
+  }
+
+  .levels,
+  .tips {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 45px 5%;
+  }
+
+  .quiz-box {
+    padding: 25px 15px;
+  }
+
+  .answer {
+    padding: 12px 5px;
+    font-size: 22px;
+  }
+}
+
+/* LAYAR KECIL */
+@media (max-width: 380px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .answers {
+    gap: 8px;
+  }
+
+  .answer {
+    font-size: 19px;
+  }
+}
+
+/* AKSESIBILITAS */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+    }

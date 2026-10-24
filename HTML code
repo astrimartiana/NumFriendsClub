@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NumFriendsClub - Belajar Berhitung</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: #fffaf0;
+      color: #26324b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #26324b;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+      color: #ff855e;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #26324b;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #ff855e;
+    }
+
+    .hero {
+      padding: 75px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.15;
+      margin: 20px 0;
+    }
+
+    .hero-text h1 span {
+      color: #ff855e;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .badge {
+      background: #b8edc7;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffd85e;
+      color: #26324b;
+      padding: 13px 23px;
+      border: 3px solid #26324b;
+      border-radius: 15px;
+      box-shadow: 0 4px 0 #26324b;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #26324b;
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 260px;
+      min-height: 300px;
+      background: #cbb8ff;
+      border: 3px solid #26324b;
+      border-radius: 40px;
+      box-shadow: 7px 7px 0 #26324b;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .hero-image .numbers {
+      font-size: clamp(55px, 8vw, 85px);
+      font-weight: bold;
+      color: white;
+      text-shadow: 4px 4px #26324b;
+    }
+
+    .hero-image p {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    section {
+      padding: 65px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #667085;
+    }
+
+    .levels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .level-card {
+      padding: 28px;
+      border: 3px solid #26324b;
+      border-radius: 25px;
+      box-shadow: 5px 5px 0 #26324b;
+    }
+
+    .level-card:nth-child(1) {
+      background: #ffe1ec;
+    }
+
+    .level-card:nth-child(2) {
+      background: #dff5ff;
+    }
+
+    .level-card:nth-child(3) {
+      background: #e0f8df;
+    }
+
+    .level-card .emoji {
+      font-size: 45px;
+    }
+
+    .level-card h3 {
+      font-size: 23px;
+      margin: 10px 0;
+    }
+
+    .level-card p {
+      margin-bottom: 20px;
+    }
+
+    .practice {
+      background: #fff0c6;
+    }
+
+    .quiz-box {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      padding: 35px 25px;
+      border: 3px solid #26324b;
+      border-radius: 28px;
+      box-shadow: 7px 7px 0 #26324b;
+      text-align: center;
+    }
+
+    .question {
+      font-size: 55px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .answer {
+      padding: 15px;
+      font-size: 25px;
+      font-weight: bold;
+      background: #8bd7f2;
+      border: 3px solid #26324b;
+      border-radius: 15px;
+      box-shadow: 0 4px 0 #26324b;
+      cursor: pointer;
+    }
+
+    .answer:nth-child(2) {
+      background: #ffb5cd;
+    }
+
+    .answer:nth-child(3) {
+      background: #a9e8bd;
+    }
+
+    .answer:disabled {
+      cursor: default;
+      opacity: 0.75;
+    }
+
+    #feedback {
+      margin: 20px 0;
+      font-weight: bold;
+      min-height: 28px;
+    }
+
+    .score {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .tips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .tip-card {
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 22px;
+      border: 2px solid #f1e8d8;
+    }
+
+    .tip-card .emoji {
+      font-size: 40px;
+    }
+
+    .tip-card h3 {
+      margin: 10px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      background: #26324b;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 7px;
+        font-size: 14px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .levels,
+      .tips {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🔢 NumFriendsClub</div>
+    <nav>
+      <a href="#home">Beranda</a>
+      <a href="#level">Level</a>
+      <a href="#latihan">Kuis</a>
+      <a href="#tips">Tips</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <span class="badge">🌟 Belajar Jadi Menyenangkan!</span>
+        <h1>Yuk, Jago <span>Berhitung</span> Bersama!</h1>
+        <p>
+          Selamat datang di NumFriendsClub!
+          Tempat belajar angka, penjumlahan, dan pengurangan
+          sambil bermain untuk anak TK sampai kelas 2 SD.
+        </p>
+        <a href="#level" class="btn">Mulai Belajar 🚀</a>
+      </div>
+
+      <div class="hero-image">
+        <div class="numbers">1 2 3!</div>
+        <p>Angka itu menyenangkan! 🍎⭐</p>
+        <p>Belajar, bermain, dan jadi pintar!</p>
+      </div>
+    </section>
+
+    <section id="level">
+      <div class="section-title">
+        <h2>🎒 Pilih Level Belajarmu!</h2>
+        <p>Ayo belajar sesuai dengan kelasmu.</p>
+      </div>
+
+      <div class="levels">
+        <div class="level-card">
+          <div class="emoji">🧸</div>
+          <h3>Level TK</h3>
+          <p>Mengenal angka 1–10 dan menghitung benda sederhana.</p>
+          <button class="btn" onclick="setLevel('tk')">Mulai Level TK</button>
+        </div>
+
+        <div class="level-card">
+          <div class="emoji">🎒</div>
+          <h3>Kelas 1 SD</h3>
+          <p>Belajar penjumlahan dan pengurangan sederhana.</p>
+          <button class="btn" onclick="setLevel('1')">Mulai Kelas 1</button>
+        </div>
+
+        <div class="level-card">
+          <div class="emoji">🚀</div>
+          <h3>Kelas 2 SD</h3>
+          <p>Berlatih penjumlahan dan pengurangan angka lebih besar.</p>
+          <button class="btn" onclick="setLevel('2')">Mulai Kelas 2</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="practice" id="latihan">
+      <div class="section-title">
+        <h2>🧠 Kuis Berhitung</h2>
+        <p>Pilih jawaban yang benar dan kumpulkan bintang!</p>
+      </div>
+
+      <div class="quiz-box">
+        <p id="levelName">Level TK</p>
+        <div class="question" id="question">2 + 1 = ?</div>
+
+        <div class="answers" id="answers">
+          <button class="answer" onclick="checkAnswer(this)">2</button>
+          <button class="answer" onclick="checkAnswer(this)">3</button>
+          <button class="answer" onclick="checkAnswer(this)">4</button>
+        </div>
+
+        <p id="feedback">Semangat belajar! Kamu pasti bisa 😊</p>
+
+        <button class="btn" onclick="nextQuestion()">Soal Berikutnya ➜</button>
+
+        <p class="score">⭐ Bintang: <span id="score">0</span></p>
+      </div>
+    </section>
+
+    <section id="tips">
+      <div class="section-title">
+        <h2>🌈 Tips Teman Pintar</h2>
+        <p>Belajar berhitung bisa dilakukan sambil bermain.</p>
+      </div>
+
+      <div class="tips">
+        <div class="tip-card">
+          <div class="emoji">🍎</div>
+          <h3>Hitung Benda</h3>
+          <p>Gunakan buah atau mainan untuk belajar menghitung.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="emoji">🎵</div>
+          <h3>Sambil Bernyanyi</h3>
+          <p>Nyanyikan angka agar lebih mudah diingat.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="emoji">⭐</div>
+          <h3>Terus Mencoba</h3>
+          <p>Jangan takut salah. Setiap hari kita bisa belajar hal baru!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>🔢 NumFriendsClub</p>
+    <p>Belajar Berhitung dengan Gembira ♡</p>
+    <p>© <span id="year"></span> NumFriendsClub</p>
+  </footer>
+
+  <script>
+    let level = "tk";
+    let score = 0;
+    let correctAnswer = 3;
+    let answered = false;
+
+    const questionElement = document.getElementById("question");
+    const answersElement = document.getElementById("answers");
+    const feedbackElement = document.getElementById("feedback");
+    const scoreElement = document.getElementById("score");
+    const levelNameElement = document.getElementById("levelName");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function randomNumber(max) {
+      return Math.floor(Math.random() * max) + 1;
+    }
+
+    function setLevel(selectedLevel) {
+      level = selectedLevel;
+
+      if (level === "tk") {
+        levelNameElement.textContent = "Level TK";
+      } else if (level === "1") {
+        levelNameElement.textContent = "Level Kelas 1 SD";
+      } else {
+        levelNameElement.textContent = "Level Kelas 2 SD";
+      }
+
+      nextQuestion();
+
+      document.getElementById("latihan").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function nextQuestion() {
+      answered = false;
+
+      let a;
+      let b;
+      let operator;
+
+      if (level === "tk") {
+        a = randomNumber(5);
+        b = randomNumber(5);
+        operator = "+";
+      } else if (level === "1") {
+        a = randomNumber(10);
+        b = randomNumber(10);
+        operator = Math.random() < 0.6 ? "+" : "-";
+      } else {
+        a = randomNumber(20);
+        b = randomNumber(15);
+        operator = Math.random() < 0.5 ? "+" : "-";
+      }
+
+      if (operator === "-" && b > a) {
+        [a, b] = [b, a];
+      }
+
+      correctAnswer =
+        operator === "+" ? a + b : a - b;
+
+      questionElement.textContent =
+        `${a} ${operator} ${b} = ?`;
+
+      const choices = new Set([correctAnswer]);
+
+      while (choices.size < 3) {
+        const variation = randomNumber(5) *
+          (Math.random() < 0.5 ? -1 : 1);
+
+        if (correctAnswer + variation >= 0) {
+          choices.add(correctAnswer + variation);
+        }
+      }
+
+      const shuffledChoices = [...choices]
+        .sort(() => Math.random() - 0.5);
+
+      answersElement.innerHTML = "";
+
+      shuffledChoices.forEach(number => {
+        const button = document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = number;
+        button.onclick = function () {
+          checkAnswer(button);
+        };
+
+        answersElement.appendChild(button);
+      });
+
+      feedbackElement.textContent =
+        "Semangat belajar! Pilih jawabanmu 😊";
+    }
+
+    function checkAnswer(button) {
+      if (answered) return;
+
+      answered = true;
+
+      const selectedAnswer = Number(button.textContent);
+      const buttons = answersElement.querySelectorAll("button");
+
+      buttons.forEach(item => {
+        item.disabled = true;
+      });
+
+      if (selectedAnswer === correctAnswer) {
+        score++;
+        scoreElement.textContent = score;
+
+        feedbackElement.textContent =
+          "Hebat sekali! Jawabanmu benar! ⭐🎉";
+      } else {
+        feedbackElement.textContent =
+          `Belum tepat. Jawaban yang benar adalah ${correctAnswer}. Tetap semangat! 💛`;
+      }
+    }
+  </script>
+
+</body>
+</html>
